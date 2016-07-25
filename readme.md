@@ -89,7 +89,7 @@ new_chords = Change(chords, old_key, new_key, :all_sharp)
 ##Supported chords
 The following chords are supported:
 ```ruby
-# adding any of these can be added at the end of a chord or key
+# Any of these can be added at the end of a chord or key
 # for example: "Am7"
 "dim7"
 "dim"

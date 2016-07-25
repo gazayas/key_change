@@ -1,5 +1,8 @@
 ##A gem to change an array of chords from one key to any other key
 
+###Installation
+`$ gem install key_change`
+
 ```ruby
 require 'key_change'
 

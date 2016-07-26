@@ -20,7 +20,7 @@ The output is:
 
 ##Writing sharps and flats
 ```ruby
-# To make a sharp chord, write a hash tag
+# To make a sharp chord, write a hash character
 # It will be converted to "♯"
 old_key = "F#"
 

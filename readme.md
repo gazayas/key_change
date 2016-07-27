@@ -113,6 +113,23 @@ Haven't put these chords in yet:
 "add9"
 ```
 
+```ruby
+# change this method's name:
+def note_position(chord)
+  ...
+end
+
+# to this:
+def note_position_of(chord)
+  ...
+end
+
+# or this:
+def position_of(chord)
+  ...
+end
+```
+
 ##Caution:
 After putting the original chords through the function,
 they will be changed. Be careful if you decide to use them

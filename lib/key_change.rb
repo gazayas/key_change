@@ -85,7 +85,7 @@ def change (chords, old_key, new_key, option)
     when /aug/ then
       addition = "aug"
     when /11/ then
-      addition = "11"
+      addition = "11"g
     end
 
     # chord を上手く計算するために、addition を chord から取り除く
@@ -133,14 +133,3 @@ def change (chords, old_key, new_key, option)
   end #chords.mapの終わり
 
 end
-
-chords = ["A", "Gb", "C#", "E"]
-old_key = "A"
-new_key = "B"
-
-new_chords = change(chords, old_key, new_key, :default)
-
-puts "古いコード："
-p chords
-puts "新しいコード："
-p new_chords

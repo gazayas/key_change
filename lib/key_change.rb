@@ -35,7 +35,6 @@ def change (original_chords, old_key, new_key, option)
 
   chords = Marshal.load(Marshal.dump(original_chords))
 
-  # メソッドが終わってもオリジナルのコードが影響を受けてgsub!によって変えられてしまうので注意してください
   replace(old_key)
   replace(new_key)
   chords.each do |chord|

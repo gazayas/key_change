@@ -1,56 +1,47 @@
+# 必要な変数の定義
+NOTES_SHARP = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
+NOTES_FLAT = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
+
 # 便利なファンクションの定義
-def Sharp? (note)
-  if note.match(/♯/) || note.match(/\#/)
-    return true
-  else
-    return false
+def sharp? (note)
+  note.match(/♯/) || note.match(/#/)
+end
+
+def flat? (note)
+  note.match(/♭/) || note.match(/b/)
+end
+
+# 「b」か「#」であったら変換されます
+def replace(note)
+  if sharp?(note)
+    note.gsub!(/#/, "♯")
+  elsif flat?(note)
+    note.gsub!(/b/, "♭")
   end
 end
 
-def Flat? (note)
-  if note.match(/♭/) || note.match(/b/)
-    return true
+# noteの位置を調べて返します
+# C と C♯ の差で (position = 1 - 0) にならないように「1」を足します
+def note_position(note)
+  if flat?(note)
+    NOTES_FLAT.index(note) + 1
   else
-    return false
+    NOTES_SHARP.index(note) + 1
   end
 end
 
+# 主要のメソッド
+def change (chords, old_key, new_key, option)
 
-# 主本のメソッド
-def Change (chords, old_key, new_key, option)
-
-  # 必要な変数の定義
-  notes_sharp = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
-  notes_flat = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
-  new_chords = []
-
-  # b か # であったら変換してくれる
-  if Sharp?(old_key)
-    old_key.gsub!(/\#/, "♯")
-  elsif Flat?(old_key)
-    old_key.gsub!(/\b/, "♭")
+  # メソッドが終わってもオリジナルのコードが影響を受けてgsub!によって変えられてしまうので注意してください
+  replace(old_key)
+  replace(new_key)
+  chords.each do |chord|
+    replace(chord)
   end
 
-  if Sharp?(new_key)
-    new_key.gsub!(/\#/, "♯")
-  elsif Flat?(new_key)
-    new_key.gsub!(/b/, "♭")
-  end
-
-
-   # 古いキーの位置を調べて取得する
-   if Flat? (old_key)
-     old_key_position = notes_flat.index(old_key) + 1
-   else
-     old_key_position = notes_sharp.index(old_key) + 1
-   end
-
-   # 新しい方も
-   if Flat? (new_key)
-     new_key_position = notes_flat.index(new_key) + 1
-   else
-     new_key_position = notes_sharp.index(new_key) + 1
-   end
+  old_key_position = note_position(old_key)
+  new_key_position = note_position(new_key)
 
    # キーの差を計算する
    if new_key_position == old_key_position
@@ -63,14 +54,7 @@ def Change (chords, old_key, new_key, option)
      key_up = true
    end
 
-  chords.each do |chord|
-
-    # メソッドが終わってもオリジナルのコードが影響を受けてgsub!されるので注意してください
-    if Sharp?(chord)
-      chord.gsub!(/\#/, "♯")
-    elsif Flat?(chord)
-      chord.gsub!(/b/, "♭")
-    end
+  chords.map do |chord|
 
     addition = ""
     case chord
@@ -102,48 +86,26 @@ def Change (chords, old_key, new_key, option)
       addition = "aug"
     when /11/ then
       addition = "11"
-
     end
+
     # chord を上手く計算するために、addition を chord から取り除く
     if addition != ""
       chord.gsub!(addition, "")
     end
 
-
-
+    original_position = note_position(chord)
     if key_up == true
-      if Flat?(chord)
-        original_position = notes_flat.index(chord) + 1
-        new_position = original_position + difference
-        if new_position > 12
-          new_position -= 12
-        end
-        new_position -= 1
-      else
-        original_position = notes_sharp.index(chord) + 1
-        new_position = original_position + difference
-        if new_position > 12
-          new_position -= 12
-        end
-        new_position -= 1
+      new_position = original_position + difference
+      if new_position > 12
+        new_position -= 12
       end
     else # key_up == false
-      if Flat?(chord)
-        original_position = notes_flat.index(chord) + 1
-        new_position = original_position - difference
-        if new_position < 1
-          new_position += 12
-        end
-        new_position -= 1
-      else
-        original_position = notes_sharp.index(chord) + 1
-        new_position = original_position - difference
-        if new_position < 1
-          new_position += 12
-        end
-        new_position -= 1
+      new_position = original_position - difference
+      if new_position < 1
+        new_position += 12
       end
     end
+    new_position -= 1
 
     if option == :default
       option = :sharp
@@ -151,25 +113,23 @@ def Change (chords, old_key, new_key, option)
 
     case option
     when :sharp then
-      if Flat?(chord)
-        new_chords << notes_flat[new_position] + addition
+      if flat?(chord)
+        NOTES_FLAT[new_position] + addition
       else
-        new_chords << notes_sharp[new_position] + addition
+        NOTES_SHARP[new_position] + addition
       end
     when :flat then
-      if Sharp?(chord)
-        new_chords << notes_sharp[new_position] + addition
+      if sharp?(chord)
+        NOTES_SHARP[new_position] + addition
       else
-        new_chords << notes_flat[new_position] + addition
+        NOTES_FLAT[new_position] + addition
       end
     when :all_sharp then
-        new_chords << notes_sharp[new_position] + addition
+        NOTES_SHARP[new_position] + addition
     when :all_flat then
-        new_chords << notes_flat[new_position] + addition
+        NOTES_FLAT[new_position] + addition
     end
 
-  end #chords.eachの終わり
-
-  return new_chords
+  end #chords.mapの終わり
 
 end

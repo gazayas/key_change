@@ -11,7 +11,7 @@ old_key = "G"
 new_key = "A"
 
 # Declare a new array of chords with the function
-new_chords = Change(chords, old_key, new_key, :default)
+new_chords = change(chords, old_key, new_key, :default)
 ```
 The output is:
 ```ruby
@@ -46,7 +46,7 @@ chords = ["G", "Gb", "Em", "C"]
 original_key = "G"
 new_key = "A"
 
-new_chords = Change(chords, old_key, new_key, :sharp)
+new_chords = change(chords, old_key, new_key, :sharp)
 # The output is ["A", "A♭", "F♯m", "D"]
 # Any chord that was originally flat will stay flat if applicable
 # In any other case, they will become sharp (Like "F♯m")

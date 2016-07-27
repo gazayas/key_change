@@ -85,7 +85,7 @@ def change (chords, old_key, new_key, option)
     when /aug/ then
       addition = "aug"
     when /11/ then
-      addition = "11"g
+      addition = "11"
     end
 
     # chord を上手く計算するために、addition を chord から取り除く

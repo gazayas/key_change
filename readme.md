@@ -131,11 +131,17 @@ end
 ```
 
 ##Caution:
-After putting the original chords through the function,
-they will be changed. Be careful if you decide to use them
-again after using the function.
-If people request, I might change the code so the original
-chords will stay unaffected.
+In the current code,
+```ruby
+chords = Marshal.load(Marshal.dump(original_chords)
+```
+is used to leave the original chords passed in the argument unaffected,
+but the gem has not been updated on rubygems.org,
+so even if the gem is installed the original chords
+will be AFFECTED after the method is finished.
 
+The same is true for the name of the method itself.
+On here, `change()` is used but on rubygems.org
+it is still `Change()` with a capital C
 
 ##日本語の説明を書くこと...

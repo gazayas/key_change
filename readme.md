@@ -11,7 +11,7 @@ old_key = "G"
 new_key = "A"
 
 # Declare a new array of chords with the function
-new_chords = change(chords, old_key, new_key, :default)
+new_chords = Change(chords, old_key, new_key, :default)
 ```
 The output is:
 ```ruby

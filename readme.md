@@ -235,7 +235,7 @@ new_chords = Change(chords, old_key, new_key, :all_sharp)
 "11"
 ```
 ##まだ
-下記のadditionはまたコードに入っていません：
+下記のadditionはまだコードに入っていません：
 ```ruby
 "add2"
 "add9"

@@ -11,7 +11,7 @@ old_key = "G"
 new_key = "A"
 
 # Declare a new array of chords with the function
-new_chords = Change(chords, old_key, new_key, :default)
+new_chords = change(chords, old_key, new_key, :default)
 ```
 The output is:
 ```ruby
@@ -120,28 +120,9 @@ def note_position(chord)
 end
 
 # to this:
-def note_position_of(chord)
-  ...
-end
-
-# or this:
 def position_of(chord)
   ...
 end
 ```
-
-##Caution:
-In the current code,
-```ruby
-chords = Marshal.load(Marshal.dump(original_chords)
-```
-is used to leave the original chords passed in the argument unaffected,
-but the gem has not been updated on rubygems.org,
-so even if the gem is installed the original chords
-will be AFFECTED after the method is finished.
-
-The same is true for the name of the method itself.
-On here, `change()` is used but on rubygems.org
-it is still `Change()` with a capital C
 
 ##日本語の説明を書くこと...

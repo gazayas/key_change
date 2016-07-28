@@ -125,4 +125,129 @@ def position_of(chord)
 end
 ```
 
-##日本語の説明を書くこと...
+##歌の（配列としての）コード、歌のキーと転調するための新しいキー、そしてどんな風に転調されるオプション（4つの引数）をメソッドに渡すことで、歌の転調を楽に行うことができます。
+
+###インストール
+`$ gem install key_change`
+
+```ruby
+require 'key_change'
+
+chords = ["G", "Em", "C", "D"]
+old_key = "G"
+new_key = "A"
+
+# change()メソッドで新しい配列を定義します
+new_chords = change(chords, old_key, new_key, :default)
+```
+出力されるのは：
+```ruby
+["A", "F♯m", "D", "E"]
+```
+
+##シャープやフラット記号
+```ruby
+# シャープ記号を書くには、コメントで使う"#"を書きます
+# "♯"に変換されます
+old_key = "F#"
+
+# フラット記号を書くには、小文字の"b"を書きます
+# "♭"に変換されます
+new_key = "Ab"
+```
+
+##転調のオプション
+change()メソッドの最後の引数はオプションです。
+4つのオプションから選べます。
+```ruby
+:sharp # これは「:default」と同じです
+:flat
+:all_sharp
+:all_flat
+```
+
+###「:sharp」オプション
+```ruby
+chords = ["G", "Gb", "Em", "C"]
+original_key = "G"
+new_key = "A"
+
+new_chords = change(chords, old_key, new_key, :sharp)
+# 出力されるのは["A", "A♭", "F♯m", "D"]です
+# 元々はフラットであったコードはそのままフラットに変換されます
+# それ以外のコードはシャープに変換されます（「F♯m」みたいに）
+```
+
+###「:flat」オプション
+```ruby
+chords = ["G", "F♯", "Em", "C"]
+original_key = "G"
+new_key = "A"
+
+new_chords = Change(chords, old_key, new_key, :flat)
+# 出力されるのは["A", "G♯", "G♭m", "D"]です
+# 元々はシャープであったコードはそのままシャープに変換されます
+# それ以外のコードはフラットに変換されます（「G♭m」みたいに）
+```
+
+###「:all_sharp」オプション
+```ruby
+chords = ["G", "Gb", "Em", "C"]
+original_key = "G"
+new_key = "A"
+
+new_chords = Change(chords, old_key, new_key, :all_sharp)
+# 出力されるのは["A", "G♯", "F♯m", "D"]です
+# 対象となるコードは全部シャープに変換されます
+```
+
+###「:all_flat」オプション
+```ruby
+chords = ["G", "Gb", "Em", "C"]
+original_key = "G"
+new_key = "A"
+
+new_chords = Change(chords, old_key, new_key, :all_sharp)
+# 出力されるのは["A", "A♭", "G♭m", "D"]です
+# 対象となるコードは全部フラットに変換されます
+```
+
+##使用可能なコード
+下記のコードは使用できます：
+```ruby
+# コードやキーの語尾として追加できます
+# 例えば: "Am7"
+"dim7"
+"dim"
+"2"
+"sus4"
+"sus"
+"maj7"
+"maj"
+"m7"
+"m"
+"7"
+"6"
+"9"
+"aug"
+"11"
+```
+##まだ
+下記のadditionはまたコードに入っていません：
+```ruby
+"add2"
+"add9"
+```
+
+```ruby
+# このメソッドの名前を...
+def note_position(chord)
+  ...
+end
+
+# これに変えたいです：
+def position_of(chord)
+  ...
+end
+```
+

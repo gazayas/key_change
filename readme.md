@@ -20,7 +20,7 @@ The output is:
 
 ##Writing sharps and flats
 ```ruby
-# To make a sharp chord, write a hash character
+# To make a sharp chord, write a pound sign
 # It will be converted to "♯"
 old_key = "F#"
 
@@ -33,7 +33,7 @@ new_key = "Ab"
 As seen in the function, the last argument is an option.
 There are 4 options that can be chosen from
 ```ruby
-:sharp # This is the same as default
+:sharp # This is the same as :default
 :flat
 :all_sharp
 :all_flat

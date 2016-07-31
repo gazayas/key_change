@@ -2,7 +2,7 @@
 NOTES_SHARP = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
 NOTES_FLAT = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
 
-# 便利なファンクションの定義
+# 便利なメソッドの定義
 def sharp? (note)
   note.match(/♯/) || note.match(/#/)
 end

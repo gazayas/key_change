@@ -113,19 +113,6 @@ Haven't put these chords in yet:
 "add9"
 ```
 
-```ruby
-# change this method's name:
-def note_position(chord)
-  ...
-end
-
-# to this:
-def position_of(chord)
-  ...
-end
-```
-
-
 ## key_change：歌のコードを楽に転調するためのgem
 歌の（配列としての）コード、歌のキーと転調するための新しいキー、そしてどんな風に転調されるかを決めるオプション（4つの引数）をメソッドに渡すことで、歌の転調を楽に行うことができます。
 
@@ -240,16 +227,3 @@ new_chords = Change(chords, old_key, new_key, :all_sharp)
 "add2"
 "add9"
 ```
-
-```ruby
-# このメソッドの名前を...
-def note_position(chord)
-  ...
-end
-
-# これに変えたいです：
-def position_of(chord)
-  ...
-end
-```
-

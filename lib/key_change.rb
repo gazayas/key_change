@@ -22,7 +22,7 @@ end
 
 # noteの位置を調べて返します
 # C と C♯ の差で (position = 1 - 0) にならないように「1」を足します
-def note_position(note)
+def position_of(note)
   if flat?(note)
     NOTES_FLAT.index(note) + 1
   else
@@ -41,8 +41,8 @@ def change (original_chords, old_key, new_key, option)
     replace(chord)
   end
 
-  old_key_position = note_position(old_key)
-  new_key_position = note_position(new_key)
+  old_key_position = position_of(old_key)
+  new_key_position = position_of(new_key)
 
    # キーの差を計算する
    if new_key_position == old_key_position
@@ -94,7 +94,7 @@ def change (original_chords, old_key, new_key, option)
       chord.gsub!(addition, "")
     end
 
-    original_position = note_position(chord)
+    original_position = position_of(chord)
     if key_up == true
       new_position = original_position + difference
       if new_position > 12

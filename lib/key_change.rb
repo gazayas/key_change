@@ -60,7 +60,7 @@ def change (original_chords, old_key, new_key, option)
     if chord.match(/\//) # D/F♯みたいなコードの場合はコードを分解してから再起で新しいコードを取得して、その二つの文字列を連結する
       split_chords = chord.split("/")
       new_split_chords = change(split_chords, old_key, new_key, option)
-      chord = new_split_chords[0] + "/" + new_split_chords[1]
+      chord = new_split_chords[0] + "/" + new_split_chords[1] # chords.mapを使ってるのでこれは戻り値となる
     else
     addition = ""
     case chord

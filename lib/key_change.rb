@@ -57,6 +57,11 @@ def change (original_chords, old_key, new_key, option)
 
   chords.map do |chord|
 
+    if chord.match(/\//) # D/F♯みたいなコードの場合はコードを分解してから再起で新しいコードを取得して、その二つの文字列を連結する
+      split_chords = chord.split("/")
+      new_split_chords = change(split_chords, old_key, new_key, option)
+      chord = new_split_chords[0] + "/" + new_split_chords[1]
+    else
     addition = ""
     case chord
     when /dim7/ then
@@ -130,7 +135,7 @@ def change (original_chords, old_key, new_key, option)
     when :all_flat then
         NOTES_FLAT[new_position] + addition
     end
-
+  end # 配列か一つの要素だけを認識するif・else文の終わり
   end #chords.mapの終わり
 
 end

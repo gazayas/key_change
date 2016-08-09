@@ -138,4 +138,18 @@ class KeyChangeTest < Minitest::Test
     new_chords = change(chords, original_key, new_key, :default)
     assert_equal ["A11"], new_chords
   end
+
+  def test_slash_chord
+    # key_up
+    original_key = "G"
+    new_key = "A"
+    chords = ["D/F#m"]
+    new_chords = change(chords, original_key, new_key, :default)
+    assert_equal ["E/G♯m"], new_chords
+
+    #key_down
+    new_key = "F"
+    new_chords = change(chords, original_key, new_key, :default)
+    assert_equal ["C/Em"], new_chords
+  end
 end

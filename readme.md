@@ -6,7 +6,7 @@
 ```ruby
 require 'key_change'
 
-chords = ["G", "Em", "C", "D"]
+chords = ["G", "D/F#m", "Em", "C", "D"]
 old_key = "G"
 new_key = "A"
 
@@ -15,7 +15,7 @@ new_chords = change(chords, old_key, new_key, :default)
 ```
 The output is:
 ```ruby
-["A", "F♯m", "D", "E"]
+["A", "E/G♯m", "F♯m", "D", "E"]
 ```
 
 ##Writing sharps and flats

@@ -122,7 +122,7 @@ Haven't put these chords in yet:
 ```ruby
 require 'key_change'
 
-chords = ["G", "Em", "C", "D"]
+chords = ["G", "D/F#", "Em", "C", "D"]
 old_key = "G"
 new_key = "A"
 
@@ -131,7 +131,7 @@ new_chords = change(chords, old_key, new_key, :default)
 ```
 出力されるのは：
 ```ruby
-["A", "F♯m", "D", "E"]
+["A", "E/G♯", "F♯m", "D", "E"]
 ```
 
 ##シャープやフラット記号

@@ -14,9 +14,11 @@ end
 # 「b」か「#」であったら変換されます
 def replace(note)
   if sharp?(note)
-    note.gsub!(/#/, "♯")
+    note.gsub(/#/, "♯")
   elsif flat?(note)
-    note.gsub!(/b/, "♭")
+    note.gsub(/b/, "♭")
+  else
+    note
   end
 end
 
@@ -31,22 +33,22 @@ def position_of(note)
 end
 
 # 主要のメソッド
-def change (original_chords, old_key, new_key, option)
+def change(original_chords, old_key, new_key, option)
 
   chords = Marshal.load(Marshal.dump(original_chords))
 
-  replace(old_key)
-  replace(new_key)
-  chords.each do |chord|
-    replace(chord)
-  end
+  old_key = replace(old_key)
+  new_key = replace(new_key)
 
   old_key_position = position_of(old_key)
   new_key_position = position_of(new_key)
 
    # キーの差を計算する
    if new_key_position == old_key_position
-     return chords
+     difference = 0
+     chords.map do |chord|
+       chord = replace(chord)
+     end
    elsif new_key_position < old_key_position
      difference = old_key_position - new_key_position
      key_up = false
@@ -56,6 +58,8 @@ def change (original_chords, old_key, new_key, option)
    end
 
   chords.map do |chord|
+
+    chord = replace(chord)
 
     if chord.match(/\//) # D/F♯みたいなコードの場合はコードを分解してから再起で新しいコードを取得して、その二つの文字列を連結する
       split_chords = chord.split("/")
@@ -96,7 +100,7 @@ def change (original_chords, old_key, new_key, option)
 
     # chord を上手く計算するために、addition を chord から取り除く
     if addition != ""
-      chord.gsub!(addition, "")
+      chord = chord.gsub(addition, "")
     end
 
     original_position = position_of(chord)
@@ -139,3 +143,10 @@ def change (original_chords, old_key, new_key, option)
   end #chords.mapの終わり
 
 end
+
+old_key = "G"
+new_key = "A"
+chords = ["G", "Gb", "Em", "C", "D"]
+new_chords = change(chords, old_key, new_key, :default)
+p chords
+p new_chords

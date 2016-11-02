@@ -1,5 +1,7 @@
 ##A gem to change an array of chords from one key to any other key
 
+##This gem is old; please use the gem `musician` instead
+
 ###Installation
 `$ gem install key_change`
 
@@ -114,6 +116,9 @@ Haven't put these chords in yet:
 ```
 
 ## key_change：歌のコードを楽に転調するためのgem
+
+##このgemは古いです。`musician`の方を使ってください。
+
 歌の（配列としての）コード、歌のキーと転調するための新しいキー、そしてどんな風に転調されるかを決めるオプション（4つの引数）をメソッドに渡すことで、歌の転調を楽に行うことができます。
 
 ###インストール

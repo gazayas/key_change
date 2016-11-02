@@ -60,7 +60,7 @@ chords = ["G", "F♯", "Em", "C"]
 original_key = "G"
 new_key = "A"
 
-new_chords = Change(chords, old_key, new_key, :flat)
+new_chords = change(chords, old_key, new_key, :flat)
 # The output is ["A", "G♯", "G♭m", "D"]
 # Any chord that was originally sharp will stay sharp if applicable
 # In any other case, they will become flat (Like "G♭m")
@@ -72,7 +72,7 @@ chords = ["G", "Gb", "Em", "C"]
 original_key = "G"
 new_key = "A"
 
-new_chords = Change(chords, old_key, new_key, :all_sharp)
+new_chords = change(chords, old_key, new_key, :all_sharp)
 # The output is ["A", "G♯", "F♯m", "D"]
 # All applicable chords will be changed into sharps
 ```
@@ -83,7 +83,7 @@ chords = ["G", "Gb", "Em", "C"]
 original_key = "G"
 new_key = "A"
 
-new_chords = Change(chords, old_key, new_key, :all_sharp)
+new_chords = change(chords, old_key, new_key, :all_sharp)
 # The output is ["A", "A♭", "G♭m", "D"]
 # All applicable chords will be changed into flats
 ```
@@ -178,7 +178,7 @@ chords = ["G", "F♯", "Em", "C"]
 original_key = "G"
 new_key = "A"
 
-new_chords = Change(chords, old_key, new_key, :flat)
+new_chords = change(chords, old_key, new_key, :flat)
 # 出力されるのは["A", "G♯", "G♭m", "D"]です
 # 元々はシャープであったコードはそのままシャープに変換されます
 # それ以外のコードはフラットに変換されます（「G♭m」みたいに）
@@ -190,7 +190,7 @@ chords = ["G", "Gb", "Em", "C"]
 original_key = "G"
 new_key = "A"
 
-new_chords = Change(chords, old_key, new_key, :all_sharp)
+new_chords = change(chords, old_key, new_key, :all_sharp)
 # 出力されるのは["A", "G♯", "F♯m", "D"]です
 # 対象となるコードは全部シャープに変換されます
 ```
@@ -201,7 +201,7 @@ chords = ["G", "Gb", "Em", "C"]
 original_key = "G"
 new_key = "A"
 
-new_chords = Change(chords, old_key, new_key, :all_sharp)
+new_chords = change(chords, old_key, new_key, :all_sharp)
 # 出力されるのは["A", "A♭", "G♭m", "D"]です
 # 対象となるコードは全部フラットに変換されます
 ```

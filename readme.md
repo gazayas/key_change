@@ -4,8 +4,6 @@
 
 ##A gem to change an array of chords from one key to any other key
 
-##This gem is old; please use the gem `musician` instead
-
 ###Installation
 `$ gem install key_change`
 
@@ -124,8 +122,6 @@ Haven't put these chords in yet:
 。クラスインスタンス変数などを作るには<a href="https://github.com/gazayas/musician">こちら</a>の方をお使いください。
 
 [![Gem](https://img.shields.io/gem/v/key_change.svg?style=plastic)](https://rubygems.org/gems/key_change)
-
-##このgemは古いです。`musician`の方を使ってください。
 
 歌の（配列としての）コード、歌のキーと転調するための新しいキー、そしてどんな風に転調されるかを決めるオプション（4つの引数）をメソッドに渡すことで、歌の転調を楽に行うことができます。
 

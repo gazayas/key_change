@@ -1,4 +1,4 @@
-##This gem is not object oriented. Please use <a href="https://github.com/gazayas/musician">this gem</a> to make classes
+## This gem is not object oriented. Please use <a href="https://github.com/gazayas/musician">this gem</a> to make classes
 
 [![Gem](https://img.shields.io/gem/v/key_change.svg?style=plastic)](https://rubygems.org/gems/key_change)
 

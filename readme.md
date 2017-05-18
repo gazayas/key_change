@@ -2,7 +2,7 @@
 
 [![Gem](https://img.shields.io/gem/v/key_change.svg?style=plastic)](https://rubygems.org/gems/key_change)
 
-##A gem to change an array of chords from one key to any other key
+## A gem to change an array of chords from one key to any other key
 
 ###Installation
 `$ gem install key_change`
